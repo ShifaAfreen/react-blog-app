@@ -13,7 +13,15 @@ const App = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get(`https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&apiKey=${process.env.REACT_APP_API_KEY}&page=${page}&pageSize=10`);
+        const response = await axios.get(
+          `https://react-blog-app-backend-cfum.onrender.com`,
+          {
+            params: {
+              page: page,
+              pageSize: 10,
+            },
+          }
+        );
         setPosts(response.data.articles);
         setTotalResults(response.data.totalResults);
       } catch (error) {
@@ -24,7 +32,7 @@ const App = () => {
   }, [page]);
 
   return (
-    <Router >
+    <Router basename="/react-blog-app">
       <Routes>
         <Route path="/" element={<BlogPostList posts={posts} setPage={setPage} page={page} totalResults={totalResults} maxResults={maxResults} />} />
         <Route path="/post/:id" element={<BlogPostDetail posts={posts} />} />
