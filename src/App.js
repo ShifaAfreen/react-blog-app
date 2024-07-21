@@ -14,7 +14,7 @@ const App = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          `https://react-blog-app-backend-cfum.onrender.com`,
+          `https://react-blog-app-backend-cfum.onrender.com/news`,
           {
             params: {
               page: page,
